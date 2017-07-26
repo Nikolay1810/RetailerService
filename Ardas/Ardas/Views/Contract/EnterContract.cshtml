@@ -1,0 +1,62 @@
+﻿@model Ardas.Models.Contract.Contracts
+
+@{
+    ViewBag.Title = "EnterContract";
+}
+
+<script src="~/Scripts/Core/Core.js"></script>
+<script src="~/Scripts/Contract/EnterContractView.js"></script>
+
+<h2>EnterContract</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Contracts</h4>
+        <hr />
+
+        <img src="~/Images/loading.gif" id="load" style="display:none; margin: 0 auto" alt="Alternate Text" />
+        <div class="form-group">
+            <label class="control-label col-md-2">Select root retailer</label>
+            <div class="col-md-10" id="rootSelect">
+                
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromAffiliatedRetailerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="firstSelectAffiliated">
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToAffiliatedRetailerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="secondSelectAffiliated">
+               
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContractTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="contractType">
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" onclick="CreateNewContract()" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "/")
+</div>

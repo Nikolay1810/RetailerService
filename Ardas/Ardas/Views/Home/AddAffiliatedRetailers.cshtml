@@ -1,0 +1,64 @@
+﻿@model Ardas.Models.Affiliated.AffiliatedRetailersRequest
+
+@{
+    ViewBag.Title = "AddAffiliatedRetailers";
+}
+
+<script src="~/Scripts/Core/Core.js"></script>
+<script src="~/Scripts/Home/AddAffiliatedRetailersView.js"></script>
+
+<h2>AddAffiliatedRetailers</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>AffiliatedRetailersRequest</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.isForRootRetailer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    <input type="checkbox" id="isRoot" class="checkbox" style="cursor:pointer" onchange="IsChecked()" />
+                    @Html.ValidationMessageFor(model => model.isForRootRetailer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <img src="~/Images/loading.gif" id="load" style="display:none; margin: 0 auto" alt="Alternate Text" />
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Select root retailer</label>
+            <div class="col-md-10" id="rootRetailer">
+
+            </div>
+        </div>
+
+        <div class="form-group" id="RetaileBlock">
+            <label class="control-label col-md-2">Select retailer</label>
+            <div class="col-md-10" id="retailer">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Add Affiliated Retailer" onclick="AddAffiliatedRetailer()" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "/")
+</div>

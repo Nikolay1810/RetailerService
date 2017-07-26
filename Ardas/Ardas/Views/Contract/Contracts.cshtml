@@ -1,0 +1,72 @@
+﻿@model Ardas.Models.Contract.ContractRequest
+
+@{
+    ViewBag.Title = "Contracts";
+}
+
+<script src="~/Scripts/Core/Core.js"></script>
+<script src="~/Scripts/Contract/ContractsView.js"></script>
+
+<h2>Contracts</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ContractRequest</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReailerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="retailer">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ContractTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" id="contractType">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Apply" onclick="GetContractByFilter()" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<img src="~/Images/loading.gif" id="load" style="display:none; margin: 0 auto" alt="Alternate Text" />
+<div class="form-group">
+    <label>Contracts</label>
+    <br/>
+        <div class="col-md-10" id="contractsBlock">
+
+        </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "/")
+</div>
